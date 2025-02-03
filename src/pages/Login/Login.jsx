@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProviders";
 
 const Login = () => {
   const {
@@ -13,6 +14,15 @@ const Login = () => {
   } = useForm();
 
   const [passwordType, setPasswordType] = useState("password");
+  const { loginUser, token } = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handlePasswordType = () => {
     if (passwordType === "password") {
@@ -26,29 +36,7 @@ const Login = () => {
   const handleLogin = (data) => {
     const username = data.username;
     const password = data.password;
-    fetch("http://127.0.0.1:8000/account/login/", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.token) {
-          localStorage.setItem("authToken", data.token);
-          localStorage.setItem("user_id", data.user_id);
-          localStorage.setItem("username", data.username);
-          setUser(data.user);
-          toast.success("Login successful");
-          reset();
-          // navigate("/dashboard/update_profile");
-        } else {
-          toast.error(data.error || "Login failed");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    loginUser(username, password);
   };
   return (
     <>
@@ -107,7 +95,7 @@ const Login = () => {
               )}
             </div>
             <input
-              className="btn btn-outline btn-accent w-full mt-5 text-xl font-bold"
+              className="btn bg-green-400 text-white w-full mt-5 text-xl font-bold"
               value="Login"
               type="submit"
             />

@@ -1,11 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import img from "../../../assets/banner/nursery1.jpg";
-import useCart from "../../../hoooks/useCart";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../../context/CartContext";
 
 const Details = () => {
   const data = useLoaderData();
-  const { addToCart } = useCart();
+  const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
 
   const addQuantity = () => {
@@ -31,6 +31,10 @@ const Details = () => {
           <span className="font-bold">Category: </span>
           {data.data.category}
         </p>
+        <p className="text-slate-600">
+          <span className="font-bold">Stock: </span>
+          {data.data.stock > 0 ? data.data.stock : "Out of stock"}
+        </p>
         <div className="flex justify-start items-center mt-3">
           <button onClick={remQuantity} className="btn border rounded-none">
             -
@@ -41,17 +45,12 @@ const Details = () => {
             +
           </button>
         </div>
-        <div className="flex gap-5 mt-6 ">
-          <button
-            onClick={() => addToCart({ plant: data.data, quantity })}
-            className="btn text-white bg-green-400 rounded-none"
-          >
-            Add To Cart
-          </button>
-          <button className="btn text-white bg-green-600 rounded-none">
-            Order Now
-          </button>
-        </div>
+        <button
+          onClick={() => addToCart({ plant: data.data, quantity })}
+          className="btn text-white bg-green-400 rounded-none"
+        >
+          Add To Cart
+        </button>
       </div>
     </div>
   );

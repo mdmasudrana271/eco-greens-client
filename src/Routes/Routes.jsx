@@ -4,6 +4,15 @@ import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import Main from "../Layout/Main";
 import Details from "../pages/Home/Plants/Details";
+import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../pages/shared/ErrorPage/ErrorPage";
+import SellerRoute from "./SellerRoute";
+import AddPlants from "../pages/Dashboard/AddPlants/AddPlants";
+import DashBoardLayout from "../Layout/DashBoardLayout";
+import AddCategory from "../pages/Dashboard/AddCategory/AddCategory";
+import AllPlants from "../pages/Dashboard/AllPlants/AllPlants";
+import Cart from "../pages/Dashboard/Cart/Cart";
+import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
 
 export const router = createBrowserRouter([
   {
@@ -15,10 +24,41 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/cart",
+        element: (
+          <PrivateRoute>
+            <Cart></Cart>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/details/:id",
-        element: <Details></Details>,
-        loader: ({ params }) =>
-          fetch(`http://127.0.0.1:8000/plants/details/${params.id}/`),
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
+        // loader: ({ params }) =>
+        //   fetch(`http://127.0.0.1:8000/plants/details/${params.id}/`),
+        loader: async ({ params }) => {
+          const token = localStorage.getItem("authToken"); // Get the token from localStorage
+          const response = await fetch(
+            `http://127.0.0.1:8000/plants/details/${params.id}/`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${token}`, // Send the token in the request
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Response("Not Found", { status: response.status });
+          }
+
+          return response.json(); // Convert response to JSON
+        },
       },
       {
         path: "login",
@@ -29,6 +69,50 @@ export const router = createBrowserRouter([
         element: <Signup></Signup>,
       },
       { path: "contact", element: <div>Contact us</div> },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      // normal user routes
+
+      {
+        path: "addPlants",
+        element: (
+          <SellerRoute>
+            <AddPlants></AddPlants>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "addCategory",
+        element: (
+          <SellerRoute>
+            <AddCategory></AddCategory>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "allPlants",
+        element: (
+          <SellerRoute>
+            <AllPlants></AllPlants>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "orders",
+        element: (
+          <PrivateRoute>
+            <MyOrders></MyOrders>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import useCart from "../../../hoooks/useCart";
+import { AuthContext } from "../../../context/AuthProviders";
+import { CartContext } from "../../../context/CartContext";
 const Navbar = () => {
-  const { cart } = useCart();
-  console.log(cart);
+  const { cart } = useContext(CartContext);
+  const { user, logOut } = useContext(AuthContext);
+  // console.log("user:", user);
   return (
     <>
-      <div className="navbar bg-green-50">
+      <div className="navbar bg-green-50 sticky top-0 z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,22 +33,35 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link to="">
+                <Link to="/cart">
                   <button className="btn">
                     <FaShoppingCart className="mr-2"></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart.length}</div>
+                    <div className="badge badge-success">+{cart.length}</div>
                   </button>
                 </Link>
               </li>
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
+              {user != null ? (
+                <>
+                  <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                  <li onClick={logOut}>
+                    <Link>Logout</Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Signup</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl">
@@ -56,7 +71,7 @@ const Navbar = () => {
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="">
+              <Link to="/cart">
                 <p className="flex justify-center items-center">
                   <FaShoppingCart className="mr-2"></FaShoppingCart>
                   <div className="badge badge-success">+{cart.length}</div>
@@ -66,12 +81,26 @@ const Navbar = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+
+            {user != null ? (
+              <>
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li onClick={logOut}>
+                  <Link>Logout</Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Signup</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

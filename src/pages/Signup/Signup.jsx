@@ -219,7 +219,7 @@ const Signup = () => {
             </div>
             <p className="text-error">{signUpError}</p>
             <input
-              className="btn btn-outline btn-accent w-full mt-5 text-xl font-bold"
+              className="btn bg-green-400 text-white w-full mt-5 text-xl font-bold"
               value="Signup"
               type="submit"
             />

@@ -67,7 +67,7 @@ const Plants = () => {
 
   //   console.log(cate);
 
-  console.log("plants", plants);
+  // console.log("plants", plants);
   //   console.log(category);
   return (
     <div className="mx-5">
@@ -83,11 +83,11 @@ const Plants = () => {
           </div>
         ))}
       </div>
-      <div className="my-10 grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="my-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {plants?.map((plant) => (
           <div
             key={plant.id}
-            className="max-w-xs rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
+            className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
             bis_skin_checked="1"
           >
             <img

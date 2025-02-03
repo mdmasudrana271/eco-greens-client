@@ -14,7 +14,7 @@ const AddCategory = () => {
 
   const handleAddProduct = (data) => {
     const categoryData = { name: data.category };
-    fetch("http://127.0.0.1:8000/categories/create/", {
+    fetch("https://eco-greens.onrender.com/categories/create/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -13,7 +13,7 @@ const AuthProviders = ({ children }) => {
   const [role, setRole] = useState(null);
   const logOut = () => {
     const token = localStorage.getItem("authToken");
-    fetch("http://127.0.0.1:8000/account/logout/", {
+    fetch("https://eco-greens.onrender.com/account/logout/", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -36,7 +36,7 @@ const AuthProviders = ({ children }) => {
       });
   };
   const loginUser = (username, password) => {
-    fetch("http://127.0.0.1:8000/account/login/", {
+    fetch("https://eco-greens.onrender.com/account/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const AuthProviders = ({ children }) => {
     const Token = localStorage.getItem("authToken");
 
     if (UserId && Token) {
-      fetch(`http://127.0.0.1:8000/account/details/${UserId}/`, {
+      fetch(`https://eco-greens.onrender.com/account/details/${UserId}/`, {
         method: "GET",
         headers: {
           Authorization: `Token ${Token}`,

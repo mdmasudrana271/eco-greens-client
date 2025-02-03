@@ -34,7 +34,7 @@ const Cart = () => {
       phone: user.mobile_no,
     };
 
-    fetch("http://127.0.0.1:8000/orders/place_order/", {
+    fetch("https://eco-greens.onrender.com/orders/place_order/", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -60,7 +60,7 @@ const Cart = () => {
         className="flex flex-col  p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800"
         bis_skin_checked="1"
       >
-        <h2 className="text-xl font-semibold">Your cart</h2>
+        <h2 className="text-4xl text-green-700 font-bold">Your cart</h2>
         {cart.length > 0 ? (
           <ul className="flex flex-col divide-y dark:divide-gray-300">
             {cart.map((item) => (
@@ -69,14 +69,14 @@ const Cart = () => {
                 className="flex flex-col py-6 sm:flex-row sm:justify-between"
               >
                 <div
-                  className="flex w-full space-x-2 sm:space-x-4"
+                  className="flex w-full space-x-2 sm:space-x-4 border border-green-400 p-5 rounded"
                   bis_skin_checked="1"
                 >
-                  <img
+                  {/* <img
                     className="flex-shrink-0 object-cover w-20 h-20 dark:border- rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500"
                     src={img}
                     alt="Polaroid camera"
-                  />
+                  /> */}
                   <div
                     className="flex flex-col justify-between w-full pb-4"
                     bis_skin_checked="1"

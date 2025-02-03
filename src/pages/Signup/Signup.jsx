@@ -26,7 +26,7 @@ const Signup = () => {
       confirm_password: data.confirm_password,
     };
     console.log(createdUser);
-    fetch("http://127.0.0.1:8000/account/register/", {
+    fetch("https://eco-greens.onrender.com/account/register/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

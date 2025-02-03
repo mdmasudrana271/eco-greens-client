@@ -17,7 +17,7 @@ const AddPlants = () => {
   // console.log("hostkey: ", imageHostKey);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/categories/list/", {
+    fetch("https://eco-greens.onrender.com/categories/list/", {
       headers: {
         "content-type": "application/json",
         // authorization: `Token ${localStorage.getItem("authToken")}`,
@@ -57,7 +57,7 @@ const AddPlants = () => {
             stock: data.stock,
           };
 
-          fetch("http://127.0.0.1:8000/plants/add/", {
+          fetch("https://eco-greens.onrender.com/plants/add/", {
             method: "POST",
             headers: {
               "content-type": "application/json",

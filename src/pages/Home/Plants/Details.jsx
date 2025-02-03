@@ -17,16 +17,23 @@ const Details = () => {
       setQuantity((prevQuantity) => prevQuantity - 1); // Update state
     }
   };
+
+  const getDescriptionPreview = (description) => {
+    const words = description.split(" "); // Split the description by spaces into words
+    return words.slice(0, 20).join(" ") + (words.length > 20 ? "..." : ""); // Join the first 15 words and add "..." if there are more
+  };
   console.log(data);
   return (
     <div className="flex flex-col md:flex-row  gap-5  my-10 md:mx-10 mx-2">
       <img src={img} alt="plant details image w-3/5" />
       <div className="">
         <h3 className="text-3xl text-black font-bold">{data.data.name}</h3>
-        <h2 className="text-2xl text-green-400 font-bold my-4">
-          {data.data.price}৳
+        <h2 className="text-2xl text-black font-bold my-4">
+          {data.data.price} ৳
         </h2>
-        <p className="text-slate-600">{data.data.description}</p>
+        <p className="text-slate-600">
+          {getDescriptionPreview(data.data.description)}
+        </p>
         <p className="text-slate-600">
           <span className="font-bold">Category: </span>
           {data.data.category}
@@ -34,6 +41,11 @@ const Details = () => {
         <p className="text-slate-600">
           <span className="font-bold">Stock: </span>
           {data.data.stock > 0 ? data.data.stock : "Out of stock"}
+        </p>
+        <p className="text-slate-600">All Bangladesh Delivery</p>
+        <p className="text-slate-600">Item will be shipped by 1-5 days</p>
+        <p className="text-error font-bold">
+          The image is for reference purpose only.
         </p>
         <div className="flex justify-start items-center mt-3">
           <button onClick={remQuantity} className="btn border rounded-none">
@@ -44,13 +56,13 @@ const Details = () => {
           <button onClick={addQuantity} className="btn border rounded-none">
             +
           </button>
+          <button
+            onClick={() => addToCart({ plant: data.data, quantity })}
+            className="btn text-white bg-green-400 ml-2 rounded-none"
+          >
+            Add To Cart
+          </button>
         </div>
-        <button
-          onClick={() => addToCart({ plant: data.data, quantity })}
-          className="btn text-white bg-green-400 rounded-none"
-        >
-          Add To Cart
-        </button>
       </div>
     </div>
   );

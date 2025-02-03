@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/orders/all_orders/", {
+    fetch("https://eco-greens.onrender.com/orders/all_orders/", {
       headers: {
         "content-type": "application/json",
         Authorization: `Token ${localStorage.getItem("authToken")}`,
@@ -15,6 +16,12 @@ const MyOrders = () => {
       });
   }, []);
   console.log("orders: ", orders);
+
+  const handlePayment = (total_price) => {
+    // Open a new window for payment gateway
+    window.open(`https://eco-greens.onrender.com/orders/payment/${id}/`);
+  };
+
   return (
     <div>
       <section>
@@ -74,13 +81,15 @@ const MyOrders = () => {
                         })}
                       </td>
                       <th>
-                        {/* {product.paid === true ? (
-                        "Paid"
-                      ) : (
-                        <Link to={`/dashboard/payment/${product._id}`}>
-                          <button className="btn btn-warning btn-xs">Pay</button>
-                        </Link>
-                      )} */}
+                        {item.status !== "pending" ? (
+                          "Paid"
+                        ) : (
+                          <Link to={`/dashboard/payment/${item.id}`}>
+                            <button className="btn btn-warning btn-xs">
+                              Pay
+                            </button>
+                          </Link>
+                        )}
                       </th>
                     </tr>
                   ))}

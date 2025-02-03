@@ -7,7 +7,7 @@ const AllPlants = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch(
-      `http://127.0.0.1:8000/plants/plants-by-seller/?seller_username=${user.username}`,
+      `https://eco-greens.onrender.com/plants/plants-by-seller/?seller_username=${user.username}`,
       {
         headers: {
           "content-type": "application/json",
@@ -22,7 +22,7 @@ const AllPlants = () => {
   }, []);
 
   const handleDelete = (id) => {
-    fetch(`http://127.0.0.1:8000/plants/details/${id}/`, {
+    fetch(`https://eco-greens.onrender.com/plants/details/${id}/`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

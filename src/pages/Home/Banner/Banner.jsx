@@ -1,9 +1,9 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import img1 from "../../../assets/banner/nursery1.jpg";
-import img2 from "../../../assets/banner/images 2.jpeg";
-import img3 from "../../../assets/banner/nursery3.jpg";
-import img4 from "../../../assets/banner/image4.webp";
+import img1 from "../../../assets/banner/ban1.jpg";
+import img2 from "../../../assets/banner/ban2.jpg";
+import img3 from "../../../assets/banner/ban3.jpg";
+import img4 from "../../../assets/banner/ban4.jpg";
 
 const Banner = () => {
   return (

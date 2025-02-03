@@ -4,25 +4,12 @@ import { Link } from "react-router-dom";
 const Plants = () => {
   const [plants, setPlants] = useState([]);
   const [categories, setCategories] = useState([]);
-
-  // const [cate, setCate] = useState("");
-  //   useEffect(() => {
-  //     fetch("http://127.0.0.1:8000/plants/list/", {
-  //       headers: {
-  //         "content-type": "application/json",
-  //         // authorization: `Token ${localStorage.getItem("authToken")}`,
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setPlants(data);
-  //       });
-  //   }, []);
+  const [visiblePlants, setVisiblePlants] = useState(4);
+  const [isExpanded, setIsExpanded] = useState(false);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/categories/list/", {
+    fetch("https://eco-greens.onrender.com/categories/list/", {
       headers: {
         "content-type": "application/json",
-        // authorization: `Token ${localStorage.getItem("authToken")}`,
       },
     })
       .then((res) => res.json())
@@ -36,7 +23,7 @@ const Plants = () => {
   }, []);
 
   const fetchEvent = (cate = "") => {
-    let url = `http://127.0.0.1:8000/plants/all/`;
+    let url = `https://eco-greens.onrender.com/plants/all/`;
     if (cate) {
       url += `?category=${cate}`;
     }
@@ -49,10 +36,6 @@ const Plants = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        // const pendingRequests = data.filter(
-        //   (request) => request.status === "pending"
-        // );
         setPlants(data.data);
       })
       .catch((error) => {
@@ -60,22 +43,22 @@ const Plants = () => {
       });
   };
 
-  //   const handleFilter = (categoryName) => {
-  //     setCate(categoryName); // Update selected category
-  //     fetchEvent(categoryName); // Fetch filtered data
-  //   };
+  const handleShowMore = () => {
+    setVisiblePlants(plants.length); // Show all plants
+    setIsExpanded(true); // Set expanded state to true
+  };
 
-  //   console.log(cate);
-
-  // console.log("plants", plants);
-  //   console.log(category);
+  const handleShowLess = () => {
+    setVisiblePlants(4); // Show only 4 plants
+    setIsExpanded(false); // Set expanded state to false
+  };
   return (
-    <div className="mx-5">
+    <div className="mx-5 bg-gray-100 p-4 rounded">
       <div className="relative w-full border rounded shadow flex items-center gap-4 p-3 md:p-6 overflow-x-auto">
         {categories.map((cat) => (
-          <div key={cat.id} className="text-xs md:text-xl">
+          <div key={cat.id} className="text-xs md:text-xl ">
             <button
-              className="btn bg-green-200"
+              className="btn bg-green-200 px-2 py-1"
               onClick={() => fetchEvent(cat.id)}
             >
               {cat.name}
@@ -84,7 +67,7 @@ const Plants = () => {
         ))}
       </div>
       <div className="my-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {plants?.map((plant) => (
+        {plants.slice(0, visiblePlants)?.map((plant) => (
           <div
             key={plant.id}
             className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
@@ -100,10 +83,10 @@ const Plants = () => {
               bis_skin_checked="1"
             >
               <div className="space-y-2" bis_skin_checked="1">
-                <h3 className="text-3xl font-semibold tracking-wide">
+                <h3 className="text-xl font-semibold tracking-wide">
                   {plant?.name}
                 </h3>
-                <h2 className="text-2xl text-green-400 font-bold my-4">
+                <h2 className="text-md text-black font-bold my-4">
                   {plant?.price}৳
                 </h2>
                 <p className="dark:text-gray-800">
@@ -120,6 +103,23 @@ const Plants = () => {
           </div>
         ))}
       </div>
+      {visiblePlants < plants.length && (
+        <button
+          onClick={handleShowMore}
+          className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
+        >
+          Show More
+        </button>
+      )}
+
+      {isExpanded && visiblePlants > 4 && (
+        <button
+          onClick={handleShowLess}
+          className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
+        >
+          Show Less
+        </button>
+      )}
     </div>
   );
 };

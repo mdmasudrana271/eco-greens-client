@@ -13,6 +13,7 @@ import AddCategory from "../pages/Dashboard/AddCategory/AddCategory";
 import AllPlants from "../pages/Dashboard/AllPlants/AllPlants";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -39,11 +40,11 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         // loader: ({ params }) =>
-        //   fetch(`http://127.0.0.1:8000/plants/details/${params.id}/`),
+        //   fetch(`https://eco-greens.onrender.com/plants/details/${params.id}/`),
         loader: async ({ params }) => {
           const token = localStorage.getItem("authToken"); // Get the token from localStorage
           const response = await fetch(
-            `http://127.0.0.1:8000/plants/details/${params.id}/`,
+            `https://eco-greens.onrender.com/plants/details/${params.id}/`,
             {
               method: "GET",
               headers: {
@@ -112,6 +113,33 @@ export const router = createBrowserRouter([
             <MyOrders></MyOrders>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => {
+          const token = localStorage.getItem("authToken"); // Get the token from localStorage
+          const response = await fetch(
+            `https://eco-greens.onrender.com/orders/list/${params.id}/`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${token}`, // Send the token in the request
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Response("Not Found", { status: response.status });
+          }
+
+          return response.json(); // Convert response to JSON
+        },
       },
     ],
   },

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProviders";
 import toast from "react-hot-toast";
 import { CartContext } from "../../../context/CartContext";
-import img from "../../../assets/bonsai.jpg";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
@@ -53,7 +52,7 @@ const Cart = () => {
         }
       });
   };
-
+  console.log(cart);
   return (
     <>
       <div
@@ -72,11 +71,11 @@ const Cart = () => {
                   className="flex w-full space-x-2 sm:space-x-4 border border-green-400 p-5 rounded"
                   bis_skin_checked="1"
                 >
-                  {/* <img
+                  <img
                     className="flex-shrink-0 object-cover w-20 h-20 dark:border- rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500"
-                    src={img}
+                    src={`https://eco-greens.onrender.com/media/${item?.img}`}
                     alt="Polaroid camera"
-                  /> */}
+                  />
                   <div
                     className="flex flex-col justify-between w-full pb-4"
                     bis_skin_checked="1"

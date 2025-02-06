@@ -30,51 +30,69 @@ const AddPlants = () => {
   }, []);
 
   const handleAddProduct = (data) => {
-    const image = data.image[0];
     const formData = new FormData();
-    formData.append("image", image);
-    for (let entry of formData.entries()) {
-      console.log(entry[0], entry[1]); // This will log the form field name and the value (image file)
-    }
-    const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-    fetch(url, {
+    formData.append("name", data.name);
+    formData.append("price", data.price);
+    formData.append("description", data.description);
+    // formData.append("category", data.category);
+    formData.append("category", Number(data.category));
+    formData.append("stock", data.stock);
+    formData.append("img", data.image[0]);
+
+    fetch("https://eco-greens.onrender.com/plants/add/", {
       method: "POST",
       headers: {
-        "Content-Type": "multipart/form-data",
+        Authorization: `Token ${localStorage.getItem("authToken")}`,
       },
-      body: formData,
+      body: formData, // No need to set Content-Type; browser sets it automatically for FormData
     })
       .then((res) => res.json())
-      .then((imgData) => {
-        console.log("ImgBB Response:", imgData);
-        if (imgData.success) {
-          const product = {
-            name: data.name,
-            price: data.price,
-            description: data.description,
-            img: imgData.data.url,
-            category: data.category,
-            stock: data.stock,
-          };
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.error("Error:", error));
+    // for (let entry of formData.entries()) {
+    //   console.log(entry[0], entry[1]); // This will log the form field name and the value (image file)
+    // }
+    // const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .then((imgData) => {
+    //     console.log("ImgBB Response:", imgData);
+    //     if (imgData.success) {
+    //       const product = {
+    //         name: data.name,
+    //         price: data.price,
+    //         description: data.description,
+    //         img: imgData.data.url,
+    //         category: data.category,
+    //         stock: data.stock,
+    //       };
 
-          fetch("https://eco-greens.onrender.com/plants/add/", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              authorization: `Token ${localStorage.getItem("authToken")}`,
-            },
-            body: JSON.stringify(product),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.acknowledged) {
-                toast.success("Add Product Successfully");
-                navigate("/dashboard/my-products");
-              }
-            });
-          console.log(product);
-        }
-      });
+    //       fetch("https://eco-greens.onrender.com/plants/add/", {
+    //         method: "POST",
+    //         headers: {
+    //           "content-type": "application/json",
+    //           authorization: `Token ${localStorage.getItem("authToken")}`,
+    //         },
+    //         body: JSON.stringify(product),
+    //       })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //           if (data.acknowledged) {
+    //             toast.success("Add Product Successfully");
+    //             navigate("/dashboard/my-products");
+    //           }
+    //         });
+    //       console.log(product);
+    //     }
+    //   });
   };
   return (
     <div>
@@ -146,7 +164,9 @@ const AddPlants = () => {
                 Select Category
               </option>
               {categories.map((cat) => (
-                <option key={cat.id}>{cat.name}</option>
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
               ))}
               {/* <option>Science & Technology</option>
               <option>Fiction & Literature</option>
@@ -160,6 +180,7 @@ const AddPlants = () => {
             <input
               {...register("image", { required: "image is required" })}
               type="file"
+              accept="image/*"
               className="input input-bordered w-full"
             />
             {errors.image && (

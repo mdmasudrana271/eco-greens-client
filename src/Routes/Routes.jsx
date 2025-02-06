@@ -39,27 +39,25 @@ export const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        // loader: ({ params }) =>
-        //   fetch(`https://eco-greens.onrender.com/plants/details/${params.id}/`),
-        loader: async ({ params }) => {
-          const token = localStorage.getItem("authToken"); // Get the token from localStorage
-          const response = await fetch(
-            `https://eco-greens.onrender.com/plants/details/${params.id}/`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Token ${token}`, // Send the token in the request
-              },
-            }
-          );
+        // loader: async ({ params }) => {
+        //   const token = localStorage.getItem("authToken"); // Get the token from localStorage
+        //   const response = await fetch(
+        //     `https://eco-greens.onrender.com/plants/details/${params.id}/`,
+        //     {
+        //       method: "GET",
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: `Token ${token}`, // Send the token in the request
+        //       },
+        //     }
+        //   );
 
-          if (!response.ok) {
-            throw new Response("Not Found", { status: response.status });
-          }
+        //   if (!response.ok) {
+        //     throw new Response("Not Found", { status: response.status });
+        //   }
 
-          return response.json(); // Convert response to JSON
-        },
+        //   return response.json(); // Convert response to JSON
+        // },
       },
       {
         path: "login",

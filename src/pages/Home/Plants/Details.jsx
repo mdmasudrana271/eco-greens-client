@@ -1,12 +1,50 @@
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import img from "../../../assets/banner/nursery1.jpg";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Details = () => {
-  const data = useLoaderData();
+  // const data = useLoaderData();
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+
+  const { id } = useParams();
+  const token = localStorage.getItem("authToken");
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!token) {
+      setLoading(false); // Stop loading if token is missing
+      setError("Unauthorized: Token is missing.");
+      return;
+    }
+
+    fetch(`https://eco-greens.onrender.com/plants/details/${id}/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id, token]);
+
+  if (loading) return <Spinner></Spinner>;
+  if (error) return <p>Error: {error}</p>;
 
   const addQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1); // Update state
@@ -25,7 +63,10 @@ const Details = () => {
   console.log(data);
   return (
     <div className="flex flex-col md:flex-row  gap-5  my-10 md:mx-10 mx-2">
-      <img src={img} alt="plant details image w-3/5" />
+      <img
+        src={`https://eco-greens.onrender.com/media/${data?.data.img}`}
+        alt="plant details image w-3/5"
+      />
       <div className="">
         <h3 className="text-3xl text-black font-bold">{data.data.name}</h3>
         <h2 className="text-2xl text-black font-bold my-4">

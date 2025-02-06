@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProviders";
+import toast from "react-hot-toast";
 
 const AllPlants = () => {
   //   const username = localStorage.getItem("username");
@@ -20,6 +21,8 @@ const AllPlants = () => {
         setProducts(data.data);
       });
   }, []);
+
+  console.log(products);
 
   const handleDelete = (id) => {
     fetch(`https://eco-greens.onrender.com/plants/details/${id}/`, {
@@ -68,7 +71,11 @@ const AllPlants = () => {
                           <div className="flex items-center space-x-3">
                             <div className="avatar">
                               <div className="mask mask-squircle w-12 h-12">
-                                <img src={product?.img} alt="Product img" />
+                                {/* <img src={product?.img} alt="Product img" /> */}
+                                <img
+                                  src={`https://eco-greens.onrender.com/media/${product?.img}`}
+                                  alt=""
+                                />
                               </div>
                             </div>
                             <div>

@@ -77,8 +77,8 @@ const Cart = () => {
                 >
                   <img
                     className="flex-shrink-0 object-cover w-20 h-20 dark:border- rounded outline-none sm:w-32 sm:h-32 dark:bg-gray-500"
-                    src={`https://eco-greens.onrender.com/media/${item?.img}`}
-                    alt="Polaroid camera"
+                    src={item?.img}
+                    alt="plant image"
                   />
                   <div
                     className="flex flex-col justify-between w-full pb-4"

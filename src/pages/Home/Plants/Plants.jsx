@@ -77,7 +77,7 @@ const Plants = () => {
               bis_skin_checked="1"
             >
               <img
-                src={`https://eco-greens.onrender.com/media/${plant?.img}`}
+                src={plant?.img}
                 alt=""
                 className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
               />

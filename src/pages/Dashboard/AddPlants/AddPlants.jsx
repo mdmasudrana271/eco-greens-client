@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../../../context/AuthProviders";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 
 const AddPlants = () => {
   const {
@@ -10,12 +10,8 @@ const AddPlants = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { time, user, isLoading } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-  const imageHostKey = import.meta.env.VITE_IMGBB_API_KEY;
-
-  // console.log("hostkey: ", imageHostKey);
 
   useEffect(() => {
     fetch("https://eco-greens.onrender.com/categories/list/", {
@@ -32,43 +28,17 @@ const AddPlants = () => {
 
   const handleAddProduct = (data) => {
     const formData = new FormData();
-    // formData.append("name", data.name);
-    // formData.append("price", data.price);
-    // formData.append("description", data.description);
-    // // formData.append("category", data.category);
-    // formData.append("category", Number(data.category));
-    // formData.append("stock", data.stock);
     formData.append("file", data.image[0]);
     formData.append("upload_preset", "eco_greens_img");
     formData.append("cloud_name", "ddgzmfesc");
-
-    // fetch("https://eco-greens.onrender.com/plants/add/", {
-    //   method: "POST",
-    //   headers: {
-    //     Authorization: `Token ${localStorage.getItem("authToken")}`,
-    //   },
-    //   body: formData, // No need to set Content-Type; browser sets it automatically for FormData
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((error) => console.error("Error:", error));
-    // for (let entry of formData.entries()) {
-    //   console.log(entry[0], entry[1]); // This will log the form field name and the value (image file)
-    // }
     const url = `https://api.cloudinary.com/v1_1/ddgzmfesc/image/upload`;
     fetch(url, {
       method: "POST",
-      // headers: {
-      //   "Content-Type": "multipart/form-data",
-      // },
       body: formData,
     })
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.asset_id) {
-          // console.log("Img Response:", imgData);
           const product = {
             name: data.name,
             price: data.price,
@@ -87,13 +57,11 @@ const AddPlants = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              // if (data.acknowledged) {
-              //   toast.success("Add Product Successfully");
-              //   navigate("/dashboard/my-products");
-              // }
-              console.log(data);
+              if (data.message) {
+                toast.success(data.message);
+                navigate("/dashboard/allPlants");
+              }
             });
-          // console.log(product);
         }
       });
   };

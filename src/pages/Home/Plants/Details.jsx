@@ -6,7 +6,6 @@ import Spinner from "../../../components/Spinner/Spinner";
 import { Helmet } from "react-helmet-async";
 
 const Details = () => {
-  // const data = useLoaderData();
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
 
@@ -68,10 +67,7 @@ const Details = () => {
         <title>Eco Greens | Plant Details</title>
       </Helmet>
       <div className="flex flex-col md:flex-row  gap-5  my-10 md:mx-10 mx-2">
-        <img
-          src={`https://eco-greens.onrender.com/media/${data?.data.img}`}
-          alt="plant details image"
-        />
+        <img src={data?.data.img} alt="plant details image" />
         <div className="">
           <h3 className="text-3xl text-black font-bold">{data.data.name}</h3>
           <h2 className="text-2xl text-black font-bold my-4">

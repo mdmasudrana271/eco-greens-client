@@ -78,10 +78,6 @@ const AllPlants = () => {
                             <div className="avatar">
                               <div className="mask mask-squircle w-12 h-12">
                                 <img src={product?.img} alt="Product img" />
-                                {/* <img
-                                  src={`https://eco-greens.onrender.com/media/${product?.img}`}
-                                  alt=""
-                                /> */}
                               </div>
                             </div>
                             <div>

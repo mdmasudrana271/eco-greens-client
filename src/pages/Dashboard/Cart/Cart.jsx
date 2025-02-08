@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProviders";
 import toast from "react-hot-toast";
 import { CartContext } from "../../../context/CartContext";
+import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
   const [total, setTotal] = useState(0);
@@ -55,6 +56,9 @@ const Cart = () => {
   console.log(cart);
   return (
     <>
+      <Helmet>
+        <title>Eco Greens | Cart</title>
+      </Helmet>
       <div
         className="flex flex-col  p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800"
         bis_skin_checked="1"
@@ -100,7 +104,7 @@ const Cart = () => {
                         <p className="text-lg font-semibold">
                           Price: {item.price}৳
                         </p>
-                        <p className="text-lg font-semibold">
+                        <p className="text-xs font-semibold">
                           Subtotal: {item.price * item.quantity}৳
                         </p>
                       </div>

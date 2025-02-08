@@ -43,6 +43,8 @@ const Plants = () => {
       });
   };
 
+  console.log(plants);
+
   const handleShowMore = () => {
     setVisiblePlants(plants.length); // Show all plants
     setIsExpanded(true); // Set expanded state to true
@@ -53,74 +55,76 @@ const Plants = () => {
     setIsExpanded(false); // Set expanded state to false
   };
   return (
-    <div className="mx-5 bg-gray-100 p-4 rounded">
-      <div className="relative w-full border rounded shadow flex items-center gap-4 p-3 md:p-6 overflow-x-auto">
-        {categories.map((cat) => (
-          <div key={cat.id} className="text-xs md:text-xl ">
-            <button
-              className="btn bg-green-200 px-2 py-1"
-              onClick={() => fetchEvent(cat.id)}
-            >
-              {cat.name}
-            </button>
-          </div>
-        ))}
-      </div>
-      <div className="my-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-        {plants.slice(0, visiblePlants)?.map((plant) => (
-          <div
-            key={plant.id}
-            className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
-            bis_skin_checked="1"
-          >
-            <img
-              src={`https://eco-greens.onrender.com/media/${plant?.img}`}
-              alt=""
-              className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
-            />
-            <div
-              className="flex flex-col justify-between p-6 space-y-8"
-              bis_skin_checked="1"
-            >
-              <div className="space-y-2" bis_skin_checked="1">
-                <h3 className="text-xl font-semibold tracking-wide">
-                  {plant?.name}
-                </h3>
-                <h2 className="text-md text-black font-bold my-4">
-                  {plant?.price}৳
-                </h2>
-                <p className="dark:text-gray-800">
-                  {plant?.category || "No Category"}
-                </p>
-              </div>
+    <>
+      <div className="mx-5 bg-gray-100 p-4 rounded">
+        <div className="relative w-full border rounded shadow flex items-center gap-4 p-3 md:p-6 overflow-x-auto">
+          {categories.map((cat) => (
+            <div key={cat.id} className="text-xs md:text-xl ">
               <button
-                type="button"
-                className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-green-500 dark:text-gray-50"
+                className="btn bg-green-200 px-2 py-1"
+                onClick={() => fetchEvent(cat.id)}
               >
-                <Link to={`details/${plant.id}`}>Details</Link>
+                {cat.name}
               </button>
             </div>
-          </div>
-        ))}
-      </div>
-      {visiblePlants < plants.length && (
-        <button
-          onClick={handleShowMore}
-          className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
-        >
-          Show More
-        </button>
-      )}
+          ))}
+        </div>
+        <div className="my-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {plants.slice(0, visiblePlants)?.map((plant) => (
+            <div
+              key={plant.id}
+              className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
+              bis_skin_checked="1"
+            >
+              <img
+                src={`https://eco-greens.onrender.com/media/${plant?.img}`}
+                alt=""
+                className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
+              />
+              <div
+                className="flex flex-col justify-between p-6 space-y-8"
+                bis_skin_checked="1"
+              >
+                <div className="space-y-2" bis_skin_checked="1">
+                  <h3 className="text-xl font-semibold tracking-wide">
+                    {plant?.name}
+                  </h3>
+                  <h2 className="text-md text-black font-bold my-4">
+                    {plant?.price}৳
+                  </h2>
+                  <p className="dark:text-gray-800">
+                    {plant?.category_name || "No Category"}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-green-500 dark:text-gray-50"
+                >
+                  <Link to={`details/${plant.id}`}>Details</Link>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        {visiblePlants < plants.length && (
+          <button
+            onClick={handleShowMore}
+            className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
+          >
+            Show More
+          </button>
+        )}
 
-      {isExpanded && visiblePlants > 4 && (
-        <button
-          onClick={handleShowLess}
-          className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
-        >
-          Show Less
-        </button>
-      )}
-    </div>
+        {isExpanded && visiblePlants > 4 && (
+          <button
+            onClick={handleShowLess}
+            className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
+          >
+            Show Less
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 

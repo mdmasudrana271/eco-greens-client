@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProviders";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AllPlants = () => {
   //   const username = localStorage.getItem("username");
@@ -44,9 +45,14 @@ const AllPlants = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Eco Greens | All Plants</title>
+      </Helmet>
       <section>
         {products?.length === 0 ? (
-          <p className="text-3xl mt-10 font-bold">You have no products</p>
+          <p className="text-xl text-center text-error mt-10 font-bold">
+            You have no products
+          </p>
         ) : (
           <>
             <h2 className="text-3xl font-bold">My Products</h2>
@@ -71,11 +77,11 @@ const AllPlants = () => {
                           <div className="flex items-center space-x-3">
                             <div className="avatar">
                               <div className="mask mask-squircle w-12 h-12">
-                                {/* <img src={product?.img} alt="Product img" /> */}
-                                <img
+                                <img src={product?.img} alt="Product img" />
+                                {/* <img
                                   src={`https://eco-greens.onrender.com/media/${product?.img}`}
                                   alt=""
-                                />
+                                /> */}
                               </div>
                             </div>
                             <div>
@@ -85,7 +91,7 @@ const AllPlants = () => {
                         </td>
                         <td>{product?.price}</td>
                         <td>{product?.stock}</td>
-                        <td>{product?.category}</td>
+                        <td>{product?.category_name}</td>
                         <td>
                           {product?.description
                             ? product.description

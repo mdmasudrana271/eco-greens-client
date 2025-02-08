@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -32,37 +33,42 @@ const AddCategory = () => {
   };
 
   return (
-    <div>
-      <div className="">
-        <h1 className="text-3xl font-bold">Add A Product</h1>
-        <form className="mt-6" onSubmit={handleSubmit(handleAddProduct)}>
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Category Name</span>
-            </label>
-            <input
-              {...register("category", {
-                required: "Category name is required",
-              })}
-              type="text"
-              placeholder="Category Name"
-              className="input input-bordered w-full"
-            />
-            {errors.product && (
-              <p role="alert" className="text-error">
-                {errors.product?.message}
-              </p>
-            )}
-          </div>
+    <>
+      <Helmet>
+        <title>Eco Greens | Add Category</title>
+      </Helmet>
+      <div>
+        <div className="">
+          <h1 className="text-3xl font-bold">Add A Product</h1>
+          <form className="mt-6" onSubmit={handleSubmit(handleAddProduct)}>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Category Name</span>
+              </label>
+              <input
+                {...register("category", {
+                  required: "Category name is required",
+                })}
+                type="text"
+                placeholder="Category Name"
+                className="input input-bordered w-full"
+              />
+              {errors.product && (
+                <p role="alert" className="text-error">
+                  {errors.product?.message}
+                </p>
+              )}
+            </div>
 
-          <input
-            className="btn btn-success w-full mt-5"
-            value="Add Product"
-            type="submit"
-          />
-        </form>
+            <input
+              className="btn bg-green-400 text-white w-full mt-5"
+              value="Add Product"
+              type="submit"
+            />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

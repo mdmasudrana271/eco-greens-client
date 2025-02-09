@@ -43,6 +43,9 @@ const Navbar = () => {
               <li>
                 <Link to="/">Home</Link>
               </li>
+              <li>
+                <Link to="/products">All Plants</Link>
+              </li>
               {user != null ? (
                 <>
                   <li>
@@ -81,7 +84,9 @@ const Navbar = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
-
+            <li>
+              <Link to="/products">All Plants</Link>
+            </li>
             {user != null ? (
               <>
                 <li>

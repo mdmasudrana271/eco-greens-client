@@ -14,6 +14,7 @@ import AllPlants from "../pages/Dashboard/AllPlants/AllPlants";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import MyOrders from "../pages/Dashboard/MyOrders/MyOrders";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import Products from "../pages/Products/Products";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/products",
+        element: <Products></Products>,
       },
       {
         path: "/cart",

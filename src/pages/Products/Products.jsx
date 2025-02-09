@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Spinner from "../../components/Spinner/Spinner";
 import { Link } from "react-router-dom";
-import Spinner from "../../../components/Spinner/Spinner";
 
-const Plants = () => {
+const Products = () => {
   const [plants, setPlants] = useState([]);
   const [categories, setCategories] = useState([]);
   const [visiblePlants, setVisiblePlants] = useState(4);
@@ -109,7 +109,7 @@ const Plants = () => {
                   type="button"
                   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-green-500 dark:text-gray-50"
                 >
-                  <Link to={`details/${plant.id}`}>Details</Link>
+                  <Link to={`/details/${plant.id}`}>Details</Link>
                 </button>
               </div>
             </div>
@@ -137,4 +137,4 @@ const Plants = () => {
   );
 };
 
-export default Plants;
+export default Products;

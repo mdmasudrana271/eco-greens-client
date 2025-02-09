@@ -10,7 +10,8 @@ export default {
           "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);",
       },
       colors: {
-        customGreen: "rgb(23, 24, 19)", // You can name it anything
+        customGreen: "rgb(23, 24, 19)",
+        contactBg: "#D8E2DC", // You can name it anything
       },
     },
   },

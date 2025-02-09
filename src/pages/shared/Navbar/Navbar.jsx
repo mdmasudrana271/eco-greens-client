@@ -46,6 +46,9 @@ const Navbar = () => {
               <li>
                 <Link to="/products">All Plants</Link>
               </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
               {user != null ? (
                 <>
                   <li>
@@ -86,6 +89,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/products">All Plants</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
             </li>
             {user != null ? (
               <>

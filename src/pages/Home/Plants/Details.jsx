@@ -194,7 +194,7 @@ const Details = () => {
         </div>
       </section>
       <section className="mt-32 mb-10 md:mx-10 mx-2">
-        <h3 className="text-xl md:text-5xl font-bold">
+        <h3 className="text-2xl md:text-5xl font-extrabold">
           Gardening Tips For this Plants
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10">

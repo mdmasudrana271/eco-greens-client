@@ -35,7 +35,7 @@ const MyOrders = () => {
           <h2 className="text-3xl font-bold">My Orders</h2>
           {orders.length > 0 ? (
             <div className="my-5">
-              <div className="overflow-x-auto w-full ">
+              <div className="overflow-x-auto w-full rounded">
                 <table className="table w-full">
                   <thead>
                     <tr className="bg-green-600 text-white">

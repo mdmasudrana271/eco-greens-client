@@ -6,6 +6,7 @@ import BestSell from "../BestSell/BestSell";
 import BestService from "../BestService/BestService";
 import NutrientsBanner from "../NutrientsBanner/NutrientsBanner";
 import CollectionBan from "../CollectionsBan/CollectionBan";
+import Contact from "../../Contact/Contact";
 
 const Home = () => {
   return (
@@ -31,7 +32,9 @@ const Home = () => {
       <div className="overflow-hidden">
         <CollectionBan></CollectionBan>
       </div>
-      {/* <CateBanner></CateBanner> */}
+      <div className="overflow-hidden mx-8 my-5">
+        <Contact></Contact>
+      </div>
     </div>
   );
 };

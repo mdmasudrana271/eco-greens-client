@@ -124,7 +124,7 @@ const AllPlants = () => {
                         <td>
                           <button
                             onClick={() => handleDelete(product.id)}
-                            className="btn btn-error"
+                            className="btn btn-error text-white"
                           >
                             Delete
                           </button>

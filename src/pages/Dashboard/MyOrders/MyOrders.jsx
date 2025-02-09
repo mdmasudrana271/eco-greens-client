@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("https://eco-greens.onrender.com/orders/all_orders/", {
       headers: {
@@ -14,14 +16,14 @@ const MyOrders = () => {
       .then((res) => res.json())
       .then((data) => {
         setOrders(data.data);
+        setLoading(false);
       });
   }, []);
   console.log("orders: ", orders);
 
-  const handlePayment = (total_price) => {
-    // Open a new window for payment gateway
-    window.open(`https://eco-greens.onrender.com/orders/payment/${id}/`);
-  };
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <>

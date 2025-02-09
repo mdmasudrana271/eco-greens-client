@@ -197,10 +197,10 @@ const Details = () => {
         <h3 className="text-xl md:text-5xl font-bold">
           Gardening Tips For this Plants
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 my-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-10">
           {blogs.map((blog) => (
             <div
-              className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800"
+              className="flex flex-col  p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800"
               bis_skin_checked="1"
             >
               <div className="flex space-x-4" bis_skin_checked="1">
@@ -233,17 +233,6 @@ const Details = () => {
                   className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
                 />
                 <h2 className="mb-1 text-xl font-semibold">{blog.title}</h2>
-                {/* <p className="text-sm dark:text-gray-600">
-                  {isExpanded
-                    ? blog.content
-                    : blog.content.split(" ").slice(0, 20).join(" ") + "..."}
-                </p>
-                <button
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className="text-blue-600 font-semibold mt-2"
-                >
-                  {isExpanded ? "Read Less" : "Read More"}
-                </button> */}
                 <p className="text-sm dark:text-gray-600">
                   {expandedBlogs[blog.id]
                     ? blog.content

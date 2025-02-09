@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthProviders";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const AllPlants = () => {
   //   const username = localStorage.getItem("username");
   const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(
       `https://eco-greens.onrender.com/plants/plants-by-seller/?seller_username=${user.username}`,
@@ -20,6 +22,7 @@ const AllPlants = () => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);
+        setLoading(false);
       });
   }, []);
 
@@ -42,6 +45,10 @@ const AllPlants = () => {
         }
       });
   };
+
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
 
   return (
     <>

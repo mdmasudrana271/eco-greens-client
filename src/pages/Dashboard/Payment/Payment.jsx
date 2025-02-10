@@ -45,7 +45,9 @@ const Payment = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.data.status == "SUCCESS") {
+          localStorage.setItem("transId", data.transId);
           window.location.replace(data.data.GatewayPageURL);
         }
         // console.log("Response from payment:", response);

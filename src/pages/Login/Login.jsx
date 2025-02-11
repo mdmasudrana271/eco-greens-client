@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login</title>
+        <title>Eco Greens | Login</title>
       </Helmet>
       <div className="card overflow-hidden p-5  md:w-6/12 mx-auto w-full shadow-xl bg-base-100 md:my-5">
         <div>

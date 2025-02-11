@@ -53,7 +53,7 @@ const AllPlants = () => {
   return (
     <>
       <Helmet>
-        <title>Eco Greens | All Plants</title>
+        <title>Eco Greens | My Plants</title>
       </Helmet>
       <section>
         {products?.length === 0 ? (

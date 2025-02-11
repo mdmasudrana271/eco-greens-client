@@ -1,6 +1,7 @@
 import React from "react";
 import img1 from "../../../assets/bestsell/caktus1-removebg-preview.png";
 import img2 from "../../../assets/bestsell/caktus2-removebg-preview.png";
+import { Link } from "react-router-dom";
 
 const BestSell = () => {
   return (
@@ -20,9 +21,11 @@ const BestSell = () => {
           </h2>
           <p className="text-xl">get 30% off</p>
           <div className="card-actions justify-end">
-            <button className="btn rounded-lg bg-lime-400 text-white">
-              Shop Now
-            </button>
+            <Link to="/products">
+              <button className="btn rounded-lg bg-lime-400 text-white">
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -36,9 +39,11 @@ const BestSell = () => {
           </h2>
           <p className="text-xl">collection of cactus</p>
           <div className="card-actions md:justify-start justify-end">
-            <button className="btn rounded-lg bg-lime-400 text-white">
-              Shop Now
-            </button>
+            <Link to="/products">
+              <button className="btn rounded-lg bg-lime-400 text-white">
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
         <img

@@ -10,7 +10,7 @@ const BestSell = () => {
         className="card lg:card-side bg-stone-100 shadow-xl"
       >
         <img
-          className="cover h-80 w-1/2 transition-transform duration-300 hover:scale-110"
+          className="cover h-80 w-full md:w-1/2 transition-transform duration-300 hover:scale-110"
           src={img1}
           alt="Album"
         />
@@ -35,14 +35,14 @@ const BestSell = () => {
             best selling
           </h2>
           <p className="text-xl">collection of cactus</p>
-          <div className="card-actions justify-start">
+          <div className="card-actions md:justify-start justify-end">
             <button className="btn rounded-lg bg-lime-400 text-white">
               Shop Now
             </button>
           </div>
         </div>
         <img
-          className="cover h-80 w-1/2 transition-transform duration-300 hover:scale-110"
+          className="cover h-80 w-full md:w-1/2 transition-transform duration-300 hover:scale-110"
           src={img2}
           alt="Album"
         />

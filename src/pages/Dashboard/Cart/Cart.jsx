@@ -139,7 +139,7 @@ const Cart = () => {
             type="button"
             className="px-6 py-2 border rounded-md dark:border-green-600"
           >
-            <Link to="/">Back to shop</Link>
+            <Link to="/products">Back to shop</Link>
           </button>
           <button
             onClick={handleOrderNow}

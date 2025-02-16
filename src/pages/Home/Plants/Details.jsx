@@ -104,7 +104,7 @@ const Details = () => {
             method: "POST",
             headers: {
               "content-type": "application/json",
-              authorization: `Token ${localStorage.getItem("authToken")}`,
+              Authorization: `Token ${token}`,
             },
             body: JSON.stringify(blog),
           })

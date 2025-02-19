@@ -38,11 +38,12 @@ const Plants = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setPlants(data.data);
+        setPlants(data.results.data);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error.message);
+        setLoading(false);
       });
   };
 

@@ -5,11 +5,14 @@ import Spinner from "../../../components/Spinner/Spinner";
 const Plants = () => {
   const [plants, setPlants] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [visiblePlants, setVisiblePlants] = useState(4);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page
+  const [totalPages, setTotalPages] = useState(0); // Track the total number of pages
+  const [pageSize, setPageSize] = useState(5);
+
   useEffect(() => {
-    fetch("https://eco-greens.onrender.com/categories/list/", {
+    fetch("https://eco-greens.vercel.app/categories/list/", {
       headers: {
         "content-type": "application/json",
       },
@@ -22,12 +25,13 @@ const Plants = () => {
 
   useEffect(() => {
     fetchEvent();
-  }, []);
+  }, [currentPage, pageSize]);
 
   const fetchEvent = (cate = "") => {
-    let url = `https://eco-greens.onrender.com/plants/all/`;
+    setLoading(true);
+    let url = `https://eco-greens.vercel.app/plants/all/?page=${currentPage}&page_size=${pageSize}`;
     if (cate) {
-      url += `?category=${cate}`;
+      url += `&category=${cate}`;
     }
 
     fetch(url, {
@@ -38,7 +42,9 @@ const Plants = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setPlants(data.results.data);
+        console.log(data);
+        setPlants(data?.results?.data || []);
+        setTotalPages(data?.count ? Math.ceil(data.count / pageSize) : 0);
         setLoading(false);
       })
       .catch((error) => {
@@ -47,16 +53,17 @@ const Plants = () => {
       });
   };
 
-  console.log(plants);
+  console.log("all plants: ", plants);
 
-  const handleShowMore = () => {
-    setVisiblePlants(plants.length); // Show all plants
-    setIsExpanded(true); // Set expanded state to true
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
 
-  const handleShowLess = () => {
-    setVisiblePlants(4); // Show only 4 plants
-    setIsExpanded(false); // Set expanded state to false
+  const handlePageSizeChange = (e) => {
+    setPageSize(Number(e.target.value));
+    setCurrentPage(1); // Reset to first page when pageSize changes
   };
 
   if (loading) {
@@ -80,7 +87,7 @@ const Plants = () => {
           ))}
         </div>
         <div className="my-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {plants.slice(0, visiblePlants)?.map((plant) => (
+          {plants.map((plant) => (
             <div
               key={plant.id}
               className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
@@ -110,29 +117,70 @@ const Plants = () => {
                   type="button"
                   className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-green-500 dark:text-gray-50"
                 >
-                  <Link to={`details/${plant.id}`}>Details</Link>
+                  <Link to={`/details/${plant.id}`}>Details</Link>
                 </button>
               </div>
             </div>
           ))}
         </div>
-        {visiblePlants < plants.length && (
-          <button
-            onClick={handleShowMore}
-            className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
-          >
-            Show More
-          </button>
-        )}
 
-        {isExpanded && visiblePlants > 4 && (
-          <button
-            onClick={handleShowLess}
-            className="w-[120px] py-2 px-4 mt-4 text-center bg-gray-300 text-black font-bold"
-          >
-            Show Less
-          </button>
-        )}
+        <div className="md:flex items-center justify-between">
+          {/* Page Size Dropdown */}
+          <div className="flex justify-center items-center my-5 gap-5">
+            <label htmlFor="pageSize" className="">
+              Items per page:
+            </label>
+            <select
+              id="pageSize"
+              value={pageSize}
+              onChange={handlePageSizeChange}
+              className="px-4 py-2 border rounded-md"
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+            </select>
+          </div>
+
+          {/* Pagination Controls */}
+          <div className="flex justify-center">
+            {/* Previous Button */}
+            <button
+              disabled={currentPage === 1} // Disable if on the first page
+              onClick={() => handlePageChange(currentPage - 1)}
+              className={`btn bg-green-600 dark:text-gray-50 ${
+                currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
+              }`}
+            >
+              Previous
+            </button>
+
+            {/* Page number buttons */}
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                className={`btn ${
+                  currentPage === index + 1 ? "bg-green-700" : "bg-green-400"
+                } text-white rounded-md mx-1 hover:bg-green-700 focus:outline-none`}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            {/* Next Button */}
+            <button
+              disabled={currentPage === totalPages} // Disable if on the last page
+              onClick={() => handlePageChange(currentPage + 1)}
+              className={` btn bg-green-600 dark:text-gray-50 ${
+                currentPage === totalPages
+                  ? "cursor-not-allowed opacity-50"
+                  : ""
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

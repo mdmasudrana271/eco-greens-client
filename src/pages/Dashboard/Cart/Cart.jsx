@@ -34,7 +34,7 @@ const Cart = () => {
       phone: user.mobile_no,
     };
 
-    fetch("https://eco-greens.onrender.com/orders/place_order/", {
+    fetch("https://eco-greens.vercel.app/orders/place_order/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

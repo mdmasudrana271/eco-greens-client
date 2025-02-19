@@ -35,7 +35,7 @@ const Payment = () => {
     };
 
     // Example: Send data to backend
-    fetch("https://eco-greens.onrender.com/payment/pay/", {
+    fetch("https://eco-greens.vercel.app/payment/pay/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

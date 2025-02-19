@@ -42,7 +42,6 @@ const Plants = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setPlants(data?.results?.data || []);
         setTotalPages(data?.count ? Math.ceil(data.count / pageSize) : 0);
         setLoading(false);
@@ -52,8 +51,6 @@ const Plants = () => {
         setLoading(false);
       });
   };
-
-  console.log("all plants: ", plants);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {

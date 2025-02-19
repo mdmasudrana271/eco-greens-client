@@ -15,7 +15,7 @@ const AddCategory = () => {
 
   const handleAddProduct = (data) => {
     const categoryData = { name: data.category };
-    fetch("https://eco-greens.onrender.com/categories/create/", {
+    fetch("https://eco-greens.vercel.app/categories/create/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

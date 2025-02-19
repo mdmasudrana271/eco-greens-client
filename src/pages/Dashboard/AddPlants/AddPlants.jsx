@@ -14,7 +14,7 @@ const AddPlants = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://eco-greens.onrender.com/categories/list/", {
+    fetch("https://eco-greens.vercel.app/categories/list/", {
       headers: {
         "content-type": "application/json",
         // authorization: `Token ${localStorage.getItem("authToken")}`,
@@ -47,7 +47,7 @@ const AddPlants = () => {
             category: data.category,
             stock: data.stock,
           };
-          fetch("https://eco-greens.onrender.com/plants/add/", {
+          fetch("https://eco-greens.vercel.app/plants/add/", {
             method: "POST",
             headers: {
               "content-type": "application/json",

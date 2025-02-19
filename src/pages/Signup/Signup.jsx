@@ -26,7 +26,7 @@ const Signup = () => {
       confirm_password: data.confirm_password,
     };
     console.log(createdUser);
-    fetch("https://eco-greens.onrender.com/account/register/", {
+    fetch("https://eco-greens.vercel.app/account/register/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

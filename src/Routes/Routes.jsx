@@ -133,7 +133,7 @@ export const router = createBrowserRouter([
         loader: async ({ params }) => {
           const token = localStorage.getItem("authToken"); // Get the token from localStorage
           const response = await fetch(
-            `https://eco-greens.onrender.com/orders/list/${params.id}/`,
+            `https://eco-greens.vercel.app/orders/list/${params.id}/`,
             {
               method: "GET",
               headers: {

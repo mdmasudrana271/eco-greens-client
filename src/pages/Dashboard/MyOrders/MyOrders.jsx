@@ -7,7 +7,7 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("https://eco-greens.onrender.com/orders/all_orders/", {
+    fetch("https://eco-greens.vercel.app/orders/all_orders/", {
       headers: {
         "content-type": "application/json",
         Authorization: `Token ${localStorage.getItem("authToken")}`,

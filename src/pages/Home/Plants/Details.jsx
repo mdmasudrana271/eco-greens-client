@@ -39,7 +39,7 @@ const Details = () => {
       return;
     }
 
-    fetch(`https://eco-greens.onrender.com/plants/details/${id}/`, {
+    fetch(`https://eco-greens.vercel.app/plants/details/${id}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const Details = () => {
   }, [id, token]);
 
   useEffect(() => {
-    fetch(`https://eco-greens.onrender.com/plants/blogs/${id}/`, {
+    fetch(`https://eco-greens.vercel.app/plants/blogs/${id}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ const Details = () => {
             img: imgData.url,
             plant: data.data.id,
           };
-          fetch("https://eco-greens.onrender.com/plants/blogs/", {
+          fetch("https://eco-greens.vercel.app/plants/blogs/", {
             method: "POST",
             headers: {
               "content-type": "application/json",

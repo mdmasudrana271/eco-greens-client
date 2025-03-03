@@ -23,7 +23,7 @@ github repository link ==> [Serverside](https://github.com/mdmasudrana271/eco-gr
 ### images resources
 
 * [freepic](https://www.freepik.com/)
-*images host on [imgbb](https://cloudinary.com/)
+*images host on [Cloudinary](https://cloudinary.com/)
 
 ### Features implemented in this application
 

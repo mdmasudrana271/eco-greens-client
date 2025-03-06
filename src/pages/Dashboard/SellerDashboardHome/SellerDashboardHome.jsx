@@ -92,8 +92,6 @@ const SellerDashboardHome = () => {
     }
   };
 
-  //   console.log("all orders: ", orders);
-
   const fetchRevenueData = async () => {
     try {
       const response = await fetch(

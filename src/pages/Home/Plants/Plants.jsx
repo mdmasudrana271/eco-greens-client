@@ -135,7 +135,7 @@ const Plants = () => {
           </div>
 
           {/* Pagination Controls */}
-          <div className="flex justify-center">
+          <div className="flex flex-wrap justify-center">
             {/* Previous Button */}
             <button
               disabled={currentPage === 1} // Disable if on the first page

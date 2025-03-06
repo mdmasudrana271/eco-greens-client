@@ -6,19 +6,6 @@ import Spinner from "../../../components/Spinner/Spinner";
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   fetch("https://eco-greens.vercel.app/orders/all_orders/", {
-  //     headers: {
-  //       "content-type": "application/json",
-  //       Authorization: `Token ${localStorage.getItem("authToken")}`,
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setOrders(data.data);
-  //       setLoading(false);
-  //     });
-  // }, []);
   useEffect(() => {
     fetch("https://eco-greens.vercel.app/orders/all_orders/", {
       headers: {

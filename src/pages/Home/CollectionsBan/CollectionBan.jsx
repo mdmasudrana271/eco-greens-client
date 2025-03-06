@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import img from "../../../assets/bestsell/collec-removebg-preview.png";
 
 const CollectionBan = () => {
@@ -24,9 +25,12 @@ const CollectionBan = () => {
               <p className="my-6 dark:text-gray-600">
                 Get 50% off On This Month
               </p>
-              <button className="self-start btn bg-lime-400 rounded-lg text-white">
-                Read More
-              </button>
+              <NavLink
+                to="/products"
+                className="self-start btn bg-lime-400 rounded-lg text-white"
+              >
+                Shop Now
+              </NavLink>
             </div>
           </div>
           <div

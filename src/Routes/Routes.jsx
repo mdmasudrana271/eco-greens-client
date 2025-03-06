@@ -18,6 +18,7 @@ import Products from "../pages/Products/Products";
 import Contact from "../pages/Contact/Contact";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentFail from "../pages/Dashboard/Payment/PaymentFail";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,14 @@ export const router = createBrowserRouter([
     ),
     children: [
       // normal user routes
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <DashboardHome></DashboardHome>
+          </PrivateRoute>
+        ),
+      },
 
       {
         path: "addPlants",

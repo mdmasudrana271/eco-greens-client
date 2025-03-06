@@ -4,6 +4,7 @@ import img1 from "../../../assets/banner/ban1.jpg";
 import img2 from "../../../assets/banner/ban2.jpg";
 import img3 from "../../../assets/banner/ban3.jpg";
 import img4 from "../../../assets/banner/ban4.jpg";
+import { NavLink } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -26,9 +27,12 @@ const Banner = () => {
               <p className="mb-5 text-md md:text-3xl font-bold">
                 Bring Nature Home – Shop Fresh, Lush Plants Today
               </p>
-              <button className="btn bg-green-500 text-white border-none">
+              <NavLink
+                to="/products"
+                className="btn bg-green-500 text-white border-none"
+              >
                 Get Started
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -51,9 +55,12 @@ const Banner = () => {
               <p className="mb-5 text-md md:text-3xl font-bold">
                 Nurture Your Love for Plants – Buy, Grow, and Thrive!
               </p>
-              <button className="btn bg-green-500 text-white border-none">
+              <NavLink
+                to="/products"
+                className="btn bg-green-500 text-white border-none"
+              >
                 Get Started
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -76,9 +83,12 @@ const Banner = () => {
               <p className="mb-5 text-md md:text-3xl font-bold">
                 Breathe Easy, Live Green – Shop Beautiful Plants Now
               </p>
-              <button className="btn bg-green-500 text-white border-none">
+              <NavLink
+                to="/products"
+                className="btn bg-green-500 text-white border-none"
+              >
                 Get Started
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -101,9 +111,12 @@ const Banner = () => {
               <p className="mb-5 text-md md:text-3xl font-bold">
                 Your One-Stop Plant Shop – Discover, Order, Flourish
               </p>
-              <button className="btn bg-green-500 text-white border-none">
+              <NavLink
+                to="/products"
+                className="btn bg-green-500 text-white border-none"
+              >
                 Get Started
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>

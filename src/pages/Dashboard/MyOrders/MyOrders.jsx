@@ -6,6 +6,19 @@ import Spinner from "../../../components/Spinner/Spinner";
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   fetch("https://eco-greens.vercel.app/orders/all_orders/", {
+  //     headers: {
+  //       "content-type": "application/json",
+  //       Authorization: `Token ${localStorage.getItem("authToken")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setOrders(data.data);
+  //       setLoading(false);
+  //     });
+  // }, []);
   useEffect(() => {
     fetch("https://eco-greens.vercel.app/orders/all_orders/", {
       headers: {
@@ -15,7 +28,16 @@ const MyOrders = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setOrders(data.data);
+        if (data && Array.isArray(data.data)) {
+          setOrders(data.data);
+        } else {
+          setOrders([]); // Ensure it's always an array
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching orders:", error);
+        setOrders([]); // Set empty array on error
         setLoading(false);
       });
   }, []);

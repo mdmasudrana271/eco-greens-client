@@ -88,19 +88,15 @@ const Plants = () => {
             <div
               key={plant.id}
               className=" rounded-md shadow-md dark:bg-gray-50 dark:text-gray-800"
-              bis_skin_checked="1"
             >
               <img
                 src={plant?.img}
                 alt=""
                 className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
               />
-              <div
-                className="flex flex-col justify-between p-6 space-y-8"
-                bis_skin_checked="1"
-              >
-                <div className="space-y-2" bis_skin_checked="1">
-                  <h3 className="text-xl font-semibold tracking-wide">
+              <div className="flex flex-col justify-between p-6 space-y-8">
+                <div className="space-y-2">
+                  <h3 className="text-xl font-semibold tracking-wide h-16">
                     {plant?.name}
                   </h3>
                   <h2 className="text-md text-black font-bold my-4">
@@ -112,7 +108,7 @@ const Plants = () => {
                 </div>
                 <button
                   type="button"
-                  className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-green-500 dark:text-gray-50"
+                  className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded bg-green-500 dark:text-gray-50"
                 >
                   <Link to={`/details/${plant.id}`}>Details</Link>
                 </button>

@@ -158,7 +158,7 @@ const DashboardHome = () => {
       </div>
 
       {/* Recent Orders Section */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
+      {/* <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">
           Recent Orders
         </h2>
@@ -203,7 +203,7 @@ const DashboardHome = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 };

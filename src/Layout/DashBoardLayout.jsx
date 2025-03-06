@@ -8,12 +8,9 @@ const DashBoardLayout = () => {
     <div>
       <div className="flex md:flex-row flex-col">
         {/* dashboard side bar */}
-        <div className="w-full md:w-64 md:min-h-screen bg-green-200 text-white">
+        <div className=" w-full md:w-64 md:min-h-screen bg-green-200 text-white">
           <ul className="menu p-4 text-black">
             <>
-              {/* <li>
-                <NavLink to="/dashboard/update_profile">Update Profile</NavLink>
-              </li> */}
               {user.account_type == "Seller" ? (
                 <>
                   <li>

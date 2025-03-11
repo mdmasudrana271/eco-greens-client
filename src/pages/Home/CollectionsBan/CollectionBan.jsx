@@ -4,21 +4,15 @@ import img from "../../../assets/bestsell/collec-removebg-preview.png";
 const CollectionBan = () => {
   return (
     <div>
-      <section className="p-4 lg:p-8 dark:bg-gray-100 dark:text-gray-800">
-        <div className="container mx-auto space-y-12" bis_skin_checked="1">
-          <div
-            className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row"
-            bis_skin_checked="1"
-          >
+      <section className="p-4 lg:p-8  dark:text-gray-800">
+        <div className="container mx-auto space-y-12">
+          <div className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row">
             <img
               src={img}
               alt=""
               className="h-80 dark:bg-gray-50 aspect-video"
             />
-            <div
-              className="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50"
-              bis_skin_checked="1"
-            >
+            <div className="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50">
               <h3 className="text-3xl font-bold">
                 Eco Green's Plant Collection
               </h3>
@@ -33,10 +27,7 @@ const CollectionBan = () => {
               </NavLink>
             </div>
           </div>
-          <div
-            className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row-reverse"
-            bis_skin_checked="1"
-          >
+          <div className="flex flex-col overflow-hidden rounded-md shadow-sm lg:flex-row-reverse">
             <figure>
               <iframe
                 src="https://www.youtube.com/embed/LZhnCxG5c6s?si=KkCLS55Ho7CvCATG"
@@ -46,10 +37,7 @@ const CollectionBan = () => {
                 className="h-80 dark:bg-gray-500 aspect-video"
               ></iframe>
             </figure>
-            <div
-              className="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50"
-              bis_skin_checked="1"
-            >
+            <div className="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50">
               <h3 className="text-3xl font-bold">
                 HOUSEPLANT CARE TIPS FOR BEGINNERS
               </h3>

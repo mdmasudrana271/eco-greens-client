@@ -1,12 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
-import Plants from "../Plants/Plants";
-import CateBanner from "../CateBanner/CateBanner";
 import BestSell from "../BestSell/BestSell";
 import BestService from "../BestService/BestService";
 import NutrientsBanner from "../NutrientsBanner/NutrientsBanner";
 import CollectionBan from "../CollectionsBan/CollectionBan";
 import Contact from "../../Contact/Contact";
+import Products from "../../Products/Products";
 
 const Home = () => {
   return (
@@ -18,7 +17,7 @@ const Home = () => {
         <Banner></Banner>
       </div>
       <div className="overflow-hidden">
-        <Plants></Plants>
+        <Products></Products>
       </div>
       <div className="overflow-hidden">
         <BestSell></BestSell>

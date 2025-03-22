@@ -51,7 +51,6 @@ const BestSell = () => {
           src={img2}
           alt="Album"
         />
-        {/* <figure></figure> */}
       </div>
     </div>
   );

@@ -166,6 +166,8 @@ const SellerDashboardHome = () => {
       },
     });
 
+    console.log(orders);
+
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
@@ -214,78 +216,85 @@ const SellerDashboardHome = () => {
 
       {/* Recent Orders Section */}
       {orders.length > 0 && (
-        <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-8 space-y-8">
+          <h2 className="text-3xl font-semibold mb-6 text-gray-900">
             Recent Orders
           </h2>
-          <table className="w-full border-collapse border border-gray-200">
-            <thead>
-              <tr className="bg-gray-100 text-left">
-                <th className="border p-3">Order ID</th>
-                <th className="border p-3">Customer Name</th>
-                <th className="border p-3">Product Name</th>
-                <th className="border p-3">Quantity</th>
-                <th className="border p-3">Price</th>
-                <th className="border p-3">Status</th>
-                <th className="border p-3">Total</th>
-                <th className="border p-3">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr
-                  key={order.id}
-                  className="border hover:bg-gray-50 transition"
-                >
-                  <td className="border p-3">{order.id}</td>
-                  <td className="border p-3">{order.user_name}</td>
-                  <td>
+          <div className="space-y-8">
+            {orders.map((order) => (
+              <div
+                key={order.id}
+                className="flex flex-col md:flex-row bg-white p-4 rounded-lg shadow-lg border-l-8 border-l-green-500 hover:shadow-xl transition-all duration-300"
+              >
+                {/* Left Section: Order Info */}
+                <div className="w-full md:w-1/3 space-y-4 mb-4 md:mb-0">
+                  <div className="text-lg font-semibold text-gray-800">
+                    Order ID: {order.id}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    Customer: {order.user_name}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    Phone: {order.phone}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    Address: {order.address}
+                  </div>
+                  <div
+                    className={`text-sm font-semibold rounded-full p-1 mt-2 inline-block ${
+                      order.status === "pending"
+                        ? "bg-yellow-200 text-yellow-800"
+                        : order.status === "shipped"
+                        ? "bg-blue-200 text-blue-800"
+                        : order.status === "delivered"
+                        ? "bg-green-200 text-green-800"
+                        : "bg-red-200 text-red-800"
+                    }`}
+                  >
+                    {order.status}
+                  </div>
+                </div>
+
+                {/* Right Section: Products and Total Price */}
+                <div className="w-full md:w-2/3 md:pl-6">
+                  <div className="space-y-2">
                     {order.order_items.map((product, index) => (
-                      <p key={index}>{product.plant_name}</p>
+                      <div
+                        key={index}
+                        className="flex justify-between text-gray-700"
+                      >
+                        <div className="font-semibold">
+                          {product.plant_name}
+                        </div>
+                        <div className="text-sm">
+                          {product.quantity} x ৳{product.price}
+                        </div>
+                      </div>
                     ))}
-                  </td>
-                  <td>
-                    {order.order_items.map((product, index) => (
-                      <p key={index}>{product.quantity}</p>
-                    ))}
-                  </td>
-                  <td>
-                    {order.order_items.map((product, index) => (
-                      <p key={index}>{product.price}৳</p>
-                    ))}
-                  </td>
-                  <td className="border p-3">
-                    <span
-                      className={`px-2 py-1 text-sm font-semibold rounded-lg ${
-                        order.status === "pending"
-                          ? "bg-yellow-100 text-yellow-800"
-                          : order.status === "shipped"
-                          ? "bg-blue-100 text-blue-800"
-                          : order.status === "delivered"
-                          ? "bg-green-100 text-green-800"
-                          : "bg-red-100 text-red-800"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
-                  </td>
-                  <td className="border p-3">৳{order.total_price}</td>
-                  <td>
-                    {new Date(order.order_date).toLocaleString("en-US", {
-                      weekday: "long", // "Monday"
-                      year: "numeric", // "2025"
-                      month: "long", // "January"
-                      day: "numeric", // "27"
-                      hour: "numeric", // "5"
-                      minute: "numeric", // "11"
-                      second: "numeric", // "7"
-                      hour12: true, // "AM/PM"
-                    })}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+
+                  {/* Bottom Section: Total Price and Date */}
+                  <div className="flex justify-between items-center mt-4 text-gray-800">
+                    <div className="text-lg font-semibold">
+                      Total: ৳{order.total_price}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {new Date(order.order_date).toLocaleString("en-US", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                        second: "numeric",
+                        hour12: true,
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthProviders";
 
 const DashBoardLayout = () => {
@@ -14,28 +14,31 @@ const DashBoardLayout = () => {
               {user.account_type == "Seller" ? (
                 <>
                   <li>
-                    <NavLink to="/dashboard/addPlants">Add Plants</NavLink>
+                    <Link to="/dashboard">Dashboard Home</Link>
                   </li>
                   <li>
-                    <NavLink to="/dashboard/addCategory">Add Category</NavLink>
+                    <Link to="/dashboard/addPlants">Add Plants</Link>
                   </li>
                   <li>
-                    <NavLink to="/dashboard/allPlants">All Plants</NavLink>
+                    <Link to="/dashboard/addCategory">Add Category</Link>
                   </li>
                   <li>
-                    <NavLink to="/dashboard/orders">My Orders</NavLink>
+                    <Link to="/dashboard/allPlants">All Plants</Link>
+                  </li>
+                  <li>
+                    <Link to="/dashboard/orders">My Orders</Link>
                   </li>
                 </>
               ) : (
                 <li>
-                  <NavLink to="/dashboard/orders">My Orders</NavLink>
+                  <Link to="/dashboard/orders">My Orders</Link>
                 </li>
               )}
             </>
             {/* shared nav links */}
             <div className="divider"></div>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </li>
           </ul>
         </div>

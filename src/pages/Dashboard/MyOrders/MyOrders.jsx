@@ -10,7 +10,7 @@ const MyOrders = () => {
     fetch("https://eco-greens.vercel.app/orders/all_orders/", {
       headers: {
         "content-type": "application/json",
-        Authorization: `Token ${localStorage.getItem("authToken")}`,
+        authorization: `Token ${localStorage.getItem("authToken")}`,
       },
     })
       .then((res) => res.json())
@@ -21,6 +21,7 @@ const MyOrders = () => {
           setOrders([]); // Ensure it's always an array
         }
         setLoading(false);
+        // console.log("data: ", data);
       })
       .catch((error) => {
         console.error("Error fetching orders:", error);
